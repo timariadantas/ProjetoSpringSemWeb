@@ -17,10 +17,7 @@
 		<java.version>17</java.version>
 	</properties>
 
-<!--		<repository>-->
-<!--			<id>clojars.org</id>-->
-<!--			<url>https://repo.clojars.org</url>-->
-<!--		</repository>-->
+
 	<repositories>
 		<repository>
 			<id>spring-snapshots</id>
@@ -51,11 +48,7 @@
 			<version>2.15.2</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.theokanning.openai-gpt3-java</groupId>
-			<artifactId>service</artifactId>
-			<version>0.14.0</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -72,11 +65,7 @@
 
 
 
-		<dependency>
-			<groupId>net.clojars.suuft</groupId>
-			<artifactId>libretranslate-java</artifactId>
-			<version>1.0.5</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>

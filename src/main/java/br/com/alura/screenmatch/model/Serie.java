@@ -1,10 +1,11 @@
 package br.com.alura.screenmatch.model;
 
-import br.com.alura.screenmatch.service.traducao.ConsultaMyMemory;
+//import br.com.alura.screenmatch.service.traducao.ConsultaMyMemory;
 import jakarta.persistence.*;
-import org.intellij.lang.annotations.Identifier;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.OptionalDouble;
 
 @Entity
@@ -12,6 +13,7 @@ import java.util.OptionalDouble;
 
 public class Serie{
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
         @Column(unique = true)
         private String titulo;
@@ -21,7 +23,14 @@ public class Serie{
         private Categoria  genero;
         private String atores;
         private String poster;
-        private String sinopse;
+//        private String sinopse;
+
+        @Transient
+        private List<Episodio> episodios = new ArrayList<>();
+
+        public Serie() {}
+       // construtor padrao da jpa
+
 
         // construtor
         public Serie (DadosSerie dadosSerie){
@@ -31,7 +40,23 @@ public class Serie{
                 this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
                 this.atores = dadosSerie.atores();
                 this.poster = dadosSerie.poster();
-                this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse()).trim(); // metodopara nenhum caracter em branco
+//                this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse()).trim(); // metodopara nenhum caracter em branco
+        }
+
+        public Long getId() {
+                return id;
+        }
+
+        public void setId(Long id) {
+                this.id = id;
+        }
+
+        public List<Episodio> getEpisodios() {
+                return episodios;
+        }
+
+        public void setEpisodios(List<Episodio> episodios) {
+                this.episodios = episodios;
         }
 
         public String getTitulo() {
@@ -82,13 +107,13 @@ public class Serie{
                 this.poster = poster;
         }
 
-        public String getSinopse() {
-                return sinopse;
-        }
-
-        public void setSinopse(String sinopse) {
-                this.sinopse = sinopse;
-        }
+//        public String getSinopse() {
+//                return sinopse;
+//        }
+//
+//        public void setSinopse(String sinopse) {
+//                this.sinopse = sinopse;
+//        }
 
         @Override
         public String toString() {
@@ -98,8 +123,8 @@ public class Serie{
                         ", totalTemporadas=" + totalTemporadas +
                         ", avaliacao=" + avaliacao +
                         ", atores='" + atores + '\'' +
-                        ", poster='" + poster + '\'' +
-                        ", sinopse='" + sinopse + '\'' ;
+                        ", poster='" + poster + '\'' ;
+//                        ", sinopse='" + sinopse + '\'' ;
         }
 }
 
